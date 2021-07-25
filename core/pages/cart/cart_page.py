@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from core.pages.base_page import BasePage
 
 
-class LandingPage(BasePage):
+class CartPage(BasePage):
     CART_LINK = (By.CSS_SELECTOR, "#cart_link")
 
     def go_to_cart_page(self):

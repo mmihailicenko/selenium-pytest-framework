@@ -4,7 +4,7 @@ from core.pages.landing.landing_page import LandingPage
 
 @pytest.mark.smoke
 class TestCartDeleteSelectedBoot():
-    def cart_delete_selected_book_test(browser):
+    def test_cart_delete_selected_book(self, browser):
         link = "http://selenium1py.pythonanywhere.com/"
         page = LandingPage(browser, link)
         page.open()
