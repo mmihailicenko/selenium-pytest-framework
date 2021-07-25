@@ -7,7 +7,7 @@ class LandingPage(BasePage):
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
     def go_to_login_page(self):
-        login_link = self.browser.find_element(*self.LOGIN_LINK)
+        login_link = self.driver.find_element(*self.LOGIN_LINK)
         login_link.click()
 
     def verify_login_link(self):
