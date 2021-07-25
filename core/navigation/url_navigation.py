@@ -14,13 +14,10 @@ class UrlNavigation:
     def open_url(self, url):
         self.get(UrlNavigation.BASE_URL + url)
 
-    def navigate_to_landing_page(self):
+    def navigate_to_landing_page(self): #rename
         UrlNavigation.open_url(self, UrlNavigation.LANDING_PAGE_URL)
         return PageComponentNavigation(self)
 
     def navigate_to_cart_page(self):
-        self.open_url(self.CART_PAGE_URL)
+        UrlNavigation.open_url(self, UrlNavigation.CART_PAGE_URL)
         return PageComponentNavigation(self)
-
-    # def open(self):
-    #     self.browser.get(self.url)

@@ -1,9 +1,9 @@
-from core.pages.landing.landing_page import LandingPage
+from core.pages.header.header import Header
 
 
 class PageComponentNavigation:
     def __init__(self, driver):
         self.driver = driver
 
-    def and_get_landing_page(self):
-        return LandingPage(self.driver)
+    def and_get_header(self):
+        return Header(self.driver)
