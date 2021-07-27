@@ -9,6 +9,9 @@ class BasePage:
         element = self.find_element(how, what)
         element.click()
 
+    def click_element(self, element):
+        element.click()
+
     def find_element(self, how, what):
         try:
             element = self.driver.find_element(how, what)
@@ -17,8 +20,7 @@ class BasePage:
         return element
 
     def find_elements(self, how, what):
-        element = self.driver.find_elements(how, what)
-        return element
+        return self.driver.find_elements(how, what)
 
     def is_element_present(self, how, what):
         try:

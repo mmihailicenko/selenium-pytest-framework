@@ -14,5 +14,4 @@ class TestCartDeleteSelectedBook():
             .submit_search() \
             .and_get_main_page() \
             .and_get_main_shop_container() \
-            .verify_book_present(self.BOOK_NAME)\
-            .add_to_cart()
+            .add_to_cart(self.BOOK_NAME)
