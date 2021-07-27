@@ -4,11 +4,16 @@ from core.pages.base_page import BasePage
 
 
 class CartPage(BasePage):
-    CART_LINK = (By.CSS_SELECTOR, "#cart_link")
+    CART_ITEMS = (By.CSS_SELECTOR, ".woocommerce .woocommerce-cart-form__cart-item")
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".product-name")
+    REMOVE_BTN = (By.CSS_SELECTOR, ".remove")
 
-    def go_to_cart_page(self):
-        login_link = self.browser.find_element(By.CSS_SELECTOR, self.CART_LINK)
-        login_link.click()
+    def get_cart_items(self):
+        return self.find_elements(*self.CART_ITEMS)
 
-    def verify_login_link(self):
-        assert self.is_element_present(By.CSS_SELECTOR, self.CART_LINK), "Login link is not present"
+    def get_delete_btn(self, value):
+        return self.search_items_by(value, *self.CART_ITEMS, *self.PRODUCT_NAME).find_element(*self.REMOVE_BTN)
+
+    def delete_cart_product(self, value):
+        self.click_element(self.get_delete_btn(value))
+        return CartPage(self)

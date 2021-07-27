@@ -4,8 +4,9 @@ from core.navigation.url_navigation import UrlNavigation
 
 @pytest.mark.smoke
 class TestCartDeleteSelectedBook():
-    LOGO_TITLE = 'Книжный интернет-магазин Kniga.lv Polaris - Русские книги в Латвии и Европе'
     BOOK_NAME = 'По ком звонит колокол'
+
+    # todo: add a scenario doc
 
     def test_cart_delete_selected_book(self, driver):
         UrlNavigation.navigate_to_landing_page(driver) \
@@ -14,4 +15,8 @@ class TestCartDeleteSelectedBook():
             .submit_search() \
             .and_get_main_page() \
             .and_get_main_shop_container() \
-            .add_to_cart(self.BOOK_NAME)
+            .add_to_cart(self.BOOK_NAME) \
+            .and_get_header_cart_popup() \
+            .navigate_to_cart() \
+            .delete_cart_product(self.BOOK_NAME)
+        # todo: add assert no book is shown after delete

@@ -14,7 +14,7 @@ class UrlNavigation:
     def open_url(self, url):
         self.get(UrlNavigation.BASE_URL + url)
 
-    def navigate_to_landing_page(self): #rename
+    def navigate_to_landing_page(self): # todo: rename
         UrlNavigation.open_url(self, UrlNavigation.LANDING_PAGE_URL)
         return PageComponentNavigation(self)
 
