@@ -33,12 +33,11 @@ class BasePage:
         element = self.find_element(how, what)
         element.send_keys(value)
 
-    def search_items_by(self, value, how_list, what_list, how_item, what_item):
-        cart_products_list = self.find_elements(how_list, what_list)
-        print(cart_products_list)
-        for item in cart_products_list:
+    def search_items_by(self, where, what, value):
+        elements = self.find_elements(*where)
+        for item in elements:
             try:
-                if item.find_element(how_item, what_item).text == value:
+                if item.find_element(*what).text == value:
                     return item
             except Exception as e:
                 print("Error: %r" % e)

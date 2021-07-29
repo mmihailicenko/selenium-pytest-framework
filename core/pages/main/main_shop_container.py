@@ -16,7 +16,7 @@ class MainShopContainer(BasePage):
         return MainShopContainer(self)
 
     def get_cart_btn(self, value):
-        return self.search_items_by(value, *self.PRODUCTS, *self.PRODUCT_TITLE).find_element(*self.ADD_TO_CART_BTN)
+        return self.search_items_by(self.PRODUCTS, self.PRODUCT_TITLE, value).find_element(*self.ADD_TO_CART_BTN)
 
     def get_products(self):
         return self.find_elements(*self.PRODUCTS)
@@ -25,7 +25,7 @@ class MainShopContainer(BasePage):
         return self.find_element(*self.SHOP_CONTAINER_ROOT)
 
     def verify_book_present_by_title(self, value):
-        assert self.search_items_by(value, *self.PRODUCTS, *self.PRODUCT_TITLE) \
+        assert self.search_items_by(self.PRODUCTS, self.PRODUCT_TITLE, value) \
                    .text == value, "Book %r is not found" % value
         return MainShopContainer(self)
 

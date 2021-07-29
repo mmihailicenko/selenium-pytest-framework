@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from core.navigation.url_navigation import UrlNavigation
 
@@ -20,3 +22,4 @@ class TestCartDeleteSelectedBook():
             .navigate_to_cart() \
             .delete_cart_product(self.BOOK_NAME)
         # todo: add assert no book is shown after delete
+        time.sleep(55)
