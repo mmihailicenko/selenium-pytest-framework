@@ -12,10 +12,10 @@ class MainShopContainer(BasePage):
     SHOP_CONTAINER_ROOT = (By.CSS_SELECTOR, "[id='main'] .shop-container")
 
     def add_to_cart(self, value):
-        self.click_element(self.get_cart_btn(value))
+        self.click_element(self.get_cart_btn_by_product(value))
         return MainShopContainer(self)
 
-    def get_cart_btn(self, value):
+    def get_cart_btn_by_product(self, value):
         return self.search_items_by(self.PRODUCTS, self.PRODUCT_TITLE, value).find_element(*self.ADD_TO_CART_BTN)
 
     def get_products(self):
