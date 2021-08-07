@@ -8,13 +8,13 @@ class CartPage(BasePage):
     PRODUCT_NAME = (By.CSS_SELECTOR, ".product-name")
     REMOVE_BTN = (By.CSS_SELECTOR, ".remove")
 
+    def delete_cart_product(self, value):
+        self.click_element(self.get_delete_btn(value))
+        return CartPage(self)
+
     def get_cart_items(self):
         return self.find_elements(*self.CART_ITEMS)
 
     def get_delete_btn(self, value):
-        return self.search_items_by(self.CART_ITEMS, self.PRODUCT_NAME, value)\
+        return self.search_items_by(self.get_cart_items(), self.PRODUCT_NAME, value) \
             .find_element(*self.REMOVE_BTN)
-
-    def delete_cart_product(self, value):
-        self.click_element(self.get_delete_btn(value))
-        return CartPage(self)

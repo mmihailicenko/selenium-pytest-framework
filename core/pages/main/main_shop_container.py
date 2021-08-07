@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 from core.pages.base_page import BasePage
 from core.pages.header.header_cart_popup import HeaderCartPopup
@@ -9,25 +10,16 @@ class MainShopContainer(BasePage):
     ADD_TO_CART_BTN = (By.CSS_SELECTOR, ".add-to-cart-button")
     PRODUCTS = (By.CSS_SELECTOR, ".product-small")
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".name .woocommerce-loop-product__link")
-    SHOP_CONTAINER_ROOT = (By.CSS_SELECTOR, "[id='main'] .shop-container")
 
-    def add_to_cart(self, value):
+    def add_to_cart(self, value: str):
         self.click_element(self.get_cart_btn_by_product(value))
         return MainShopContainer(self)
 
-    def get_cart_btn_by_product(self, value):
-        return self.search_items_by(self.PRODUCTS, self.PRODUCT_TITLE, value).find_element(*self.ADD_TO_CART_BTN)
-
-    def get_products(self):
-        return self.find_elements(*self.PRODUCTS)
-
-    def get_root_element(self):
-        return self.find_element(*self.SHOP_CONTAINER_ROOT)
-
-    def verify_book_present_by_title(self, value):
-        assert self.search_items_by(self.PRODUCTS, self.PRODUCT_TITLE, value) \
-                   .text == value, "Book %r is not found" % value
-        return MainShopContainer(self)
-
-    def and_get_header_cart_popup(self):
+    def and_get_header_cart_popup(self) -> HeaderCartPopup:
         return HeaderCartPopup(self)
+
+    def get_cart_btn_by_product(self, value: str) -> WebElement:
+        return self.search_items_by(self.get_products(), self.PRODUCT_TITLE, value).find_element(*self.ADD_TO_CART_BTN)
+
+    def get_products(self) -> list:
+        return self.find_elements(*self.PRODUCTS)

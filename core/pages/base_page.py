@@ -13,22 +13,23 @@ class BasePage:
         element = self.find_element(how, what)
         element.click()
 
-    def click_element(self, element):  # todo: refactor, this works, but looks as not intended
+    @staticmethod
+    def click_element(element):
         element.click()
 
     def find_element(self, how: by, what: str) -> WebElement:
         element = self.driver.find_element(how, what)
         return element
 
-    def find_elements(self, how: by, what: str):
+    def find_elements(self, how: by, what: str) -> list:
         return self.driver.find_elements(how, what)
 
     def set_text(self, how: by, what: str, value: str):
         element = self.find_element(how, what)
         element.send_keys(value)
 
-    def search_items_by(self, where: tuple, what: tuple, value: str) -> WebElement:
-        elements = self.find_elements(*where)
+    @staticmethod
+    def search_items_by(elements: list, what: tuple, value: str) -> WebElement:
         for item in elements:
             if item.find_element(*what).text == value:
                 return item
