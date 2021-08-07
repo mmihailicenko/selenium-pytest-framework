@@ -1,23 +1,22 @@
 import pytest
-from selenium import webdriver
+from core.selenium.webdriverfactory import WebDriverFactory
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default=None,
+    parser.addoption('--browser', action='store', default=None,
                      help="Choose browser: chrome or firefox")
 
 
 @pytest.fixture(scope="function")
-def driver(request):
-    browser_name = request.config.getoption("browser_name")
-    if browser_name == "chrome":
-        print("\nstart chrome browser for test..")
-        driver = webdriver.Chrome()
-    elif browser_name == "firefox":
-        print("\nstart firefox browser for test..")
-        driver = webdriver.Firefox()
-    else:
-        raise pytest.UsageError("--browser_name should be chrome or firefox")
+def each_function_setup(request):
+    wdf = WebDriverFactory("chrome")
+    driver = wdf.get_webdriver()
+    if request.cls is not None:
+        request.cls.driver = driver
     yield driver
-    print("\nquit browser..")
     driver.quit()
+
+
+@pytest.fixture(scope="session")
+def browser(request):
+    return request.config.getoption("--browser")

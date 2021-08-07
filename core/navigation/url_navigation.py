@@ -6,18 +6,16 @@ class UrlNavigation:
     LANDING_PAGE_URL = "/"
     CART_PAGE_URL = "/cart"
 
-    def __init__(self, driver, url, timeout=10):
+    def __init__(self, driver):
         self.driver = driver
-        self.url = url
-        self.driver.implicitly_wait(timeout)
 
     def open_url(self, url):
-        self.get(UrlNavigation.BASE_URL + url)
+        self.driver.get(UrlNavigation.BASE_URL + url)
 
     def navigate_to_landing_page(self):  # todo: rename
-        UrlNavigation.open_url(self, UrlNavigation.LANDING_PAGE_URL)
-        return PageComponentNavigation(self)
+        self.open_url(self.LANDING_PAGE_URL)
+        return PageComponentNavigation(self.driver)
 
     def navigate_to_cart_page(self):
-        UrlNavigation.open_url(self, UrlNavigation.CART_PAGE_URL)
+        self.open_url(self.CART_PAGE_URL)
         return PageComponentNavigation(self)
