@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver  # todo: chrome specific should be universal
 
 
 class WebDriverFactory(object):
@@ -6,7 +7,7 @@ class WebDriverFactory(object):
     def __init__(self, browser):
         self.browser = browser
 
-    def get_webdriver(self):
+    def get_webdriver(self) -> WebDriver:
         driver = None
         if self.browser == "chrome":
             driver = webdriver.Chrome()

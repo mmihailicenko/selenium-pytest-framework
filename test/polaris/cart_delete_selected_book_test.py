@@ -10,7 +10,7 @@ class TestCartDeleteSelectedBook:
 
     # todo: add a scenario doc
 
-    def test_cart_delete_selected_book(self, each_function_setup):
+    def test_cart_delete_selected_book(self, each_function_setup: pytest):
         UrlNavigation(each_function_setup).navigate_to_landing_page() \
             .and_get_header() \
             .set_search(self.BOOK_NAME) \
