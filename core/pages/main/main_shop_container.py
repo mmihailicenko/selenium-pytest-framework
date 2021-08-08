@@ -5,7 +5,6 @@ from core.pages.base_page import BasePage
 from core.pages.header.header_cart_popup import HeaderCartPopup
 
 
-# todo: implement logging in framework and step logging to every class
 class MainShopContainer(BasePage):
 
     ADD_TO_CART_BTN = (By.CSS_SELECTOR, ".add-to-cart-button")

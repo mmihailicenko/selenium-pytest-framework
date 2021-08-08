@@ -10,7 +10,7 @@ class UrlNavigation:
     def __init__(self, driver):
         self.driver = driver
 
-    def navigate_to_landing_page(self) -> PageComponentNavigation:  # todo: rename
+    def navigate_to_landing_page(self) -> PageComponentNavigation:
         self.open_url(self.LANDING_PAGE_URL)
         return PageComponentNavigation(self.driver)
 

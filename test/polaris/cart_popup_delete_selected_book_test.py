@@ -9,9 +9,8 @@ class TestCartDeleteSelectedBook:
         Steps:
         - Navigate to Polaris website
         - Search for a book and add it to cart
-        - Navigate to personal cart
-        - Delete selected book from the cart
-        - Verify cart is empty    
+        - Delete selected book from the pop up cart
+        - Verify pop up cart is empty
     """
 
     BOOK_NAME = 'По ком звонит колокол'
@@ -19,9 +18,9 @@ class TestCartDeleteSelectedBook:
     def test_cart_delete_selected_book(self, each_function_setup: pytest):
         """
         Navigate to Polaris website -> Search for a book and add it to cart
-        Navigate to personal cart -> Delete selected book from the cart
+        Navigate to personal cart -> Delete selected book from the pop up cart
         """
-        cart_page = UrlNavigation(each_function_setup).navigate_to_landing_page() \
+        cart_header_popup = UrlNavigation(each_function_setup).navigate_to_landing_page() \
             .and_get_header() \
             .set_search(self.BOOK_NAME) \
             .submit_search() \
@@ -29,8 +28,7 @@ class TestCartDeleteSelectedBook:
             .and_get_main_shop_container() \
             .add_to_cart(self.BOOK_NAME) \
             .and_get_header_cart_popup() \
-            .navigate_to_cart() \
-            .delete_cart_product(self.BOOK_NAME)
+            .delete_cart_item(self.BOOK_NAME)
 
-        """Verify cart is empty"""
-        assert cart_page.verify_cart_is_empty() is True, "Cart is not empty"
+        """Verify cart pop up is empty"""
+        assert cart_header_popup.verify_cart_is_empty() is True, "Cart pop up is not empty"
