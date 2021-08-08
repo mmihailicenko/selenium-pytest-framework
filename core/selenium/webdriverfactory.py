@@ -1,13 +1,12 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.webdriver import WebDriver  # todo: chrome specific should be universal
 
 
-class WebDriverFactory(object):
+class WebDriverFactory:
 
-    def __init__(self, browser):
+    def __init__(self, browser: str):
         self.browser = browser
 
-    def get_webdriver(self) -> WebDriver:
+    def get_webdriver(self):
         driver = None
         if self.browser == "chrome":
             driver = webdriver.Chrome()

@@ -6,6 +6,7 @@ from core.pages.cart.cart_page import CartPage
 
 
 class HeaderCartPopup(BasePage):
+
     POPUP_CONTENT = (By.CSS_SELECTOR, ".mfp-content")
     NAVIGATE_TO_CART_BTN = (By.CSS_SELECTOR, ".button.wc-forward")
 

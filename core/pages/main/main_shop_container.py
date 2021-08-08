@@ -7,6 +7,7 @@ from core.pages.header.header_cart_popup import HeaderCartPopup
 
 # todo: implement logging in framework and step logging to every class
 class MainShopContainer(BasePage):
+
     ADD_TO_CART_BTN = (By.CSS_SELECTOR, ".add-to-cart-button")
     PRODUCTS = (By.CSS_SELECTOR, ".product-small")
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".name .woocommerce-loop-product__link")

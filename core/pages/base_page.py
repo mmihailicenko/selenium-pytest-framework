@@ -24,6 +24,14 @@ class BasePage:
     def find_elements(self, how: by, what: str) -> list:
         return self.driver.find_elements(how, what)
 
+    def is_element_present(self, how, what):
+        try:
+            self.find_element(how, what)
+        except NoSuchElementException as e:
+            print("Error: %r" % e)
+            return False
+        return True
+
     def set_text(self, how: by, what: str, value: str):
         element = self.find_element(how, what)
         element.send_keys(value)

@@ -5,6 +5,7 @@ from core.pages.main.main_page import MainPage
 
 
 class Header(BasePage):
+
     LOGO_TITLE = (By.CSS_SELECTOR, "#logo .title")
     SEARCH_FIELD = (By.CSS_SELECTOR, ".search-field")
     SEARCH_SUBMIT_BTN = (By.CSS_SELECTOR, ".search-submit")

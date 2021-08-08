@@ -1,17 +1,27 @@
-import time
-
 import pytest
+
 from core.navigation.url_navigation import UrlNavigation
 
 
 @pytest.mark.smoke
 class TestCartDeleteSelectedBook:
+
     BOOK_NAME = 'По ком звонит колокол'
 
-    # todo: add a scenario doc
-
+    """Scenario: Delete Selected Book From Cart
+        Steps:
+        - Navigate to Polaris website
+        - Search for a book and add it to cart
+        - Navigate to personal cart
+        - Delete selected book from he cart
+        - Verify cart is empty    
+    """
     def test_cart_delete_selected_book(self, each_function_setup: pytest):
-        UrlNavigation(each_function_setup).navigate_to_landing_page() \
+        """
+        Navigate to Polaris website -> Search for a book and add it to cart
+        Navigate to personal cart -> Delete selected book from he cart
+        """
+        cart_page = UrlNavigation(each_function_setup).navigate_to_landing_page() \
             .and_get_header() \
             .set_search(self.BOOK_NAME) \
             .submit_search() \
@@ -21,5 +31,6 @@ class TestCartDeleteSelectedBook:
             .and_get_header_cart_popup() \
             .navigate_to_cart() \
             .delete_cart_product(self.BOOK_NAME)
-        # todo: add assert no book is shown after delete
-        time.sleep(1)
+
+        """Verify cart is empty"""
+        assert cart_page.verify_cart_is_empty() is True, "Cart is not empty"
